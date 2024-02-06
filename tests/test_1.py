@@ -20,10 +20,10 @@ class TestLogin:
 
         user = driver.find_element(By.ID, 'user-name')
         user.clear()
-        user.send_keys()
+        user.send_keys("standard_user")
         passw = driver.find_element(By.ID, 'password')
         passw.clear()
-        passw.send_keys()
+        passw.send_keys("secret_sauce")
         driver.find_element(By.ID, 'login-button').click()
         driver.find_element(By.ID, "react-burger-menu-btn").click()
         logout = wait.until(EC.element_to_be_clickable(driver.find_element(By.ID, "logout_sidebar_link")))
