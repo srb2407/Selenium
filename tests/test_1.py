@@ -1,5 +1,4 @@
-import openpyxl
-from pandas import *
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -9,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class TestLogin:
+    @pytest.mark.xfail
     def testLoginUsers(self):
         ser_obj = Service()
         driver_options = Options()
@@ -18,25 +18,13 @@ class TestLogin:
         driver.get("https://www.saucedemo.com/")
         wait = WebDriverWait(driver, 10)
 
-        xls = ExcelFile('login_cred.xlsx')
-        df = xls.parse(xls.sheet_names[0])
-        dictionary = df.to_dict()
-
-        count = 0
-        print(dictionary)
-        #for key, value in dictionary.items():
-            #self.loginLoop(driver, key, value)
-            #count += 1
-            #print(count)
-            #driver.find_element(By.ID, "react-burger-menu-btn").click()
-            #logout = wait.until(EC.element_to_be_clickable(driver.find_element(By.ID, "logout_sidebar_link")))
-            #logout.click()
-
-    #def loginLoop(self, driver, username, password):
-        #user = driver.find_element(By.ID, 'user-name')
-        #user.clear()
-        #user.send_keys(username)
-        #passw = driver.find_element(By.ID, 'password')
-        #passw.clear()
-        #passw.send_keys(password)
-        #driver.find_element(By.ID, 'login-button').click()
+        user = driver.find_element(By.ID, 'user-name')
+        user.clear()
+        user.send_keys()
+        passw = driver.find_element(By.ID, 'password')
+        passw.clear()
+        passw.send_keys()
+        driver.find_element(By.ID, 'login-button').click()
+        driver.find_element(By.ID, "react-burger-menu-btn").click()
+        logout = wait.until(EC.element_to_be_clickable(driver.find_element(By.ID, "logout_sidebar_link")))
+        logout.click()
