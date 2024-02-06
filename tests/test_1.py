@@ -28,3 +28,4 @@ class TestLogin:
         driver.find_element(By.ID, "react-burger-menu-btn").click()
         logout = wait.until(EC.element_to_be_clickable(driver.find_element(By.ID, "logout_sidebar_link")))
         logout.click()
+        driver.quit()

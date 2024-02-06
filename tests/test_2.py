@@ -31,3 +31,4 @@ class TestSort:
             assert prices == sorted_list
         except AssertionError as SortError:
             print('Sort Failed')
+        driver.quit()

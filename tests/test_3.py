@@ -38,3 +38,5 @@ class TestCart:
         except AssertionError as XYZ:
             print('Order Failed')
 
+        driver.quit()
+
